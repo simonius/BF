@@ -1,0 +1,23 @@
+This repository contains tests for entropy conservative/dissipative high order fluxes in the presence of boundaries
+While 1D testcases can be found as julia code in the directory "1D", the two-dimensional test cases were written in FORTRAN 90.
+Running 1D tests boils down to including the file NBCtest.jl and calling the function »NTBC(p)« with the desired p.
+The 2D tests can be run by issuing »make ntffs«. 
+A listing of the important source files can be found below:
+
+        * 1D/condntest.jl:      Tests the condition numbers of the matrices used to express the exactness conditions
+        * 1D/eno.jl:            ENO2 implementation for the calculation of reference solutions
+        * 1D/fortprint.jl:      Prints a matrix into a fortran file, to be used als parameter in fortran programs
+        * 1D/matprint.jl:       Prints a matrix into a tex file
+        * 1D/NBCtest.jl:        Implements the construction procedure for the linear combination matrices and carries out numerical tests in 1D
+
+        * 2D/consts.f95:        Global constants
+        * 2D/eiep.f95:          Entropy inequality predictors
+        * 2D/eno.f95:           ENO2 Recovery
+        * 2D/ffsdomain.f95:     Helper functions for the forward facing step domain
+        * 2D/ffs.f95:           Main program that solves the forward facing step problem, saves a HDF5 file
+        * 2D/fluxes.f95:        Entropy Conservative and Entropy Dissipative fluxes
+        * 2D/fluxmat6.f95:      Flux linear combination matrices for order 6, i.e. p=3 (machine generated file)
+        * 2D/gtk.f95:           Flux functions for the high order fluxes in the presence of boundaries
+        * 2D/showrst.f95:       Python script that plots the results of the calculation
+        * 2D/solvers.f95:       Main solver routines
+        * 2D/supmoll.f95:       implementation of multidimensional sup-mollification
